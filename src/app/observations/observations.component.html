@@ -1,0 +1,62 @@
+<main role="main" class="container-fluid" *ngIf="observations">
+	<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource"  matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="target">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> target </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.target}}</mat-cell>
+    </ng-container>
+
+     <!-- Color Column -->
+    <ng-container matColumnDef="group">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> group </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.group}}</mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="texp">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> texp </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.texp}}</mat-cell>
+    </ng-container>
+    
+   
+
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="seeing">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> seeing </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.seeing}}</mat-cell>
+    </ng-container>
+
+	<!-- Color Column -->
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> date </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.date}}</mat-cell>
+    </ng-container>
+
+<!-- Color Column -->
+    <ng-container matColumnDef="mjd">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> mjd </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.mjd}}</mat-cell>
+    </ng-container>
+    
+    
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+</main>

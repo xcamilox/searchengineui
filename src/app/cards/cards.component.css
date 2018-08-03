@@ -1,0 +1,24 @@
+.images-cards{
+	display: inline-block;
+    margin: .25rem;
+}
+
+#magnitudes ul{
+	display: block;
+	max-height: 400px;
+	max-width: 400px;
+	overflow-y: scroll;
+}
+
+#magnitudes ul li{
+	text-decoration: none;
+	display: block;
+	background-color: #c6c6c6;
+}
+
+#magnitudes ul li span{
+	background-color: #f6f6f6;
+	float: right;
+	width: 100px;
+	text-align: left;	
+}

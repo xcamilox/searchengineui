@@ -1,0 +1,75 @@
+<main role="main" class="container-fluid" *ngIf="archivesRespond">
+  <div class="row" *ngFor="let sources of archivesRespond.astroSource">
+  	
+<div class="col-sm" *ngIf="sources">
+	<h1>{{positionSource}}</h1>
+	<h2>{{id}}</h2>
+	<mat-form-field *ngIf="sampList">
+	  <mat-select placeholder="SAMP CLIENTS" [(value)]="selected">
+	    <mat-option>None</mat-option>
+	    <mat-option value="all">ALL</mat-option>
+	    <mat-option *ngFor="let entry of sampList | keysval" [value]="entry.key">{{entry.value["samp.name"]}}</mat-option>
+	  </mat-select>
+	</mat-form-field>
+	<button mat-raised-button (click)="getSampList()">Update Clients</button>
+	<button mat-raised-button (click)="sendToImgSAMP(selected)">Send image</button>
+	<mat-checkbox class="example-margin" [(ngModel)]="localfiles">load from Local files</mat-checkbox>
+	<img [src]="spec" alt="Card image cap" width="600">
+	<chartscomp [dataset]="sedDataset" ></chartscomp>
+
+	<div id="magnitudes">
+		<ul >
+			<li *ngFor="let item of sedDataset['labels']; let i = index">{{item}}: <span>{{sedDataset['data'][i]['y']}}</span></li>
+		</ul>
+	</div>
+
+
+	<button mat-raised-button (click)="sendToCatSAMP(selected)">Send SED SAMP</button>
+	
+	<!--
+	<div class="row" *ngIf="check">
+		<img [src]="_DomSanitizer.bypassSecurityTrustUrl(path)" alt="Report" width="800">
+	</div>
+	-->
+  
+	<ul class="list-group">
+	<div *ngFor="let archive of sources.archives">
+		<div *ngIf="archive.status == 200">
+			
+				<!-- <li class="list-group-item disabled table-responsive">
+
+					<table class="table">
+					  <thead>
+					    <tr>
+					      <th scope="col" *ngFor="let key of archive.data.summary | keys">{{key}}</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td scope="row"*ngFor="let key of archive.data.summary | keys">{{archive.data.summary[key]}}</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</li>-->
+				<li class="list-group-item" >
+					<div *ngFor="let image of archive.data.images; let i = index">
+						<div *ngFor="let ima of image.cutouts; let j = index" class="images-cards">
+							
+							<figure class="figure">
+							  <img class="card-img-top" [src]="_DomSanitizer.bypassSecurityTrustUrl(ima.url)" alt="Card image cap" class="img-thumbnail" width="200">
+							  <figcaption class="figure-caption">{{image.provider}} Band: {{ima.band}}<br>magnitude:{{ima.magnitude}}<br><a href="{{image.files[j].url}}" class="card-link">download fits</a>
+							  <span *ngIf="ima.link != ''"><a href="{{ima.link}}" class="card-link" target="_blank">display</a></span></figcaption>
+							</figure>
+						</div>
+					</div>
+				</li>
+				<div *ngIf="archive.status == 300"><p>No result found</p></div>	
+		</div>
+			
+	</div>
+	</ul>
+
+</div>
+
+  </div>
+ </main>

@@ -1,0 +1,98 @@
+<main role="main" class="container-fluid" *ngIf="rowSources">
+	<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource"  matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+      <mat-cell *matCellDef="let row"><a (click)="viewDetail(row.id)"> {{row.pos}} </a></mat-cell>
+    </ng-container>
+
+     <!-- Color Column -->
+    <ng-container matColumnDef="quality">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> QC </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.quality}}</mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="check">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Check </mat-header-cell>
+      <mat-cell *matCellDef="let row"><span [class.check]="row.check"></span></mat-cell>
+    </ng-container>
+    
+   
+
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="SDSS">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> SDSS </mat-header-cell>
+      <mat-cell *matCellDef="let row"> <span [class.check]="row.sdss"></span></mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="CFHT">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> CFHT </mat-header-cell>
+      <mat-cell *matCellDef="let row"> <span [class.check]="row.cfht"></span></mat-cell>
+    </ng-container>
+
+	<!-- Color Column -->
+    <ng-container matColumnDef="Decals">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Decals </mat-header-cell>
+      <mat-cell *matCellDef="let row"> <span [class.check]="row.decals"></span></mat-cell>
+    </ng-container>
+    
+    <!-- Color Column -->
+    <ng-container matColumnDef="Des">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Des </mat-header-cell>
+      <mat-cell *matCellDef="let row"><span [class.check]="row.des"></span></mat-cell>
+    </ng-container>
+    
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="PanSTARRS">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> PanSTARRS </mat-header-cell>
+      <mat-cell *matCellDef="let row"><span [class.check]="row.panstarrs"></span></mat-cell>
+    </ng-container>
+    
+    <!-- Color Column -->
+    <ng-container matColumnDef="Ukidss">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ukidss </mat-header-cell>
+      <mat-cell *matCellDef="let row"><span [class.check]="row.ukidss"></span></mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="VHS">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> VHS </mat-header-cell>
+      <mat-cell *matCellDef="let row"><span [class.check]="row.vhs"></span></mat-cell>
+    </ng-container>
+    
+	<!-- Color Column -->
+    <ng-container matColumnDef="Spitzer">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Spitzer </mat-header-cell>
+      <mat-cell *matCellDef="let row"> <span [class.check]="row.spitzer"></span></mat-cell>
+    </ng-container>
+    
+    <!-- Color Column -->
+    <ng-container matColumnDef="WiseUnwise">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> WiseUnwise </mat-header-cell>
+      <mat-cell *matCellDef="let row"> <span [class.check]="row.wiseunwise"></span></mat-cell>
+    </ng-container>
+    
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+</main>
